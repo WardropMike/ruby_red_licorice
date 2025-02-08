@@ -39,3 +39,7 @@ bundle exec rspec
 - docker run --rm -it ruby-test-framework sh
 - docker run --rm ruby-test-framework cat Gemfile.lock > Gemfile.lock
 - Then commit changes and push a new branch.
+
+# Occasionally ChromeDriver version will need to be updated:
+- The latest versions can be looked up @
+- https://googlechromelabs.github.io/chrome-for-testing/
