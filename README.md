@@ -31,3 +31,11 @@ end
 
 # Run Tests:
 bundle exec rspec
+
+# Maintenance
+# Steps to build and update the gemfile and gemfile.lock.
+ - Make update to the Gemfile locally.
+- docker build -t ruby-test-framework .
+- docker run --rm -it ruby-test-framework sh
+- docker run --rm ruby-test-framework cat Gemfile.lock > Gemfile.lock
+- Then commit changes and push a new branch.
