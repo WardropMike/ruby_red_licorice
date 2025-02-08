@@ -10,6 +10,10 @@
 /test/version_tmp/
 /tmp/
 
+# Used to control env files in git
+.env_prod
+.env_qa
+
 # Used by dotenv library to load environment variables.
 # .env
 

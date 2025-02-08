@@ -36,6 +36,20 @@ bundle exec rspec
 # Steps to build and update the gemfile and gemfile.lock.
  - Make update to the Gemfile locally.
 - docker build -t ruby-test-framework .
-- docker run --rm -it ruby-test-framework sh
+- docker run --rm -it ruby-test-framework sh # Not necessary if you are not looking at the updates.
 - docker run --rm ruby-test-framework cat Gemfile.lock > Gemfile.lock
 - Then commit changes and push a new branch.
+
+# Occasionally ChromeDriver version will need to be updated:
+- The latest versions can be looked up @
+- https://googlechromelabs.github.io/chrome-for-testing/
+
+# Syntax to run rake commands:  
+- rake spec             # Runs all tests
+- rake spec:smoke       # Runs only tests tagged with @smoke
+- rake spec:regression  # Runs only tests tagged with @regression
+
+# Tag Tests and Tasks like this:
+- it "tests login", :smoke do
+-  # test logic here
+- end
