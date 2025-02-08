@@ -14,6 +14,12 @@ gem 'webdrivers', '~> 5.2'
 # API Testing
 gem 'httparty', '~> 0.21.0'
 
+# Task Automatiom
+gem 'rake'
+
+# Environment Variable Management
+gem 'dotenv'
+
 # Utility Gems
 gem 'pry', '>=0'
 gem 'nokogiri', '>=1.3.3'
