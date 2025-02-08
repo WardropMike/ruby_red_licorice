@@ -1,25 +1,29 @@
 # Use latest stable Ruby version
 FROM ruby:3.3
 
-# Set up dependencies
+# Install required dependencies
 RUN apt-get update && apt-get install -y \
-  libxi6 libnss3 libgconf-2-4 fonts-liberation \
-  libappindicator3-1 libasound2 libatk-bridge2.0-0 \
-  libatk1.0-0 libcups2 libgtk-3-0 libx11-xcb1 \
-  libxss1 lsb-release xvfb xdg-utils libxcomposite1 \
-  libgbm1 dbus-x11 unzip curl git wget libpq-dev
+    curl gnupg unzip xvfb libxi6 libgconf-2-4 libappindicator3-1 \
+    libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libgtk-3-0 \
+    libx11-xcb1 libxss1 lsb-release xdg-utils libxcomposite1 \
+    libgbm1 dbus-x11 libpq-dev fonts-liberation
 
-# Install Google Chrome
-RUN curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    dpkg -i google-chrome.deb && rm google-chrome.deb
+# Add Google Chrome repository
+RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
 
-# Install ChromeDriver (matching version)
-RUN BROWSER_MAJOR=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1) && \
-    DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${BROWSER_MAJOR}") && \
-    wget -q "https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip" && \
-    unzip chromedriver_linux64.zip && \
-    mv chromedriver /usr/local/bin/ && \
-    rm chromedriver_linux64.zip
+# Install the latest Google Chrome Stable
+RUN apt-get update && apt-get install -y google-chrome-stable && \
+    google-chrome --version
+
+# Pin ChromeDriver version (update as needed)
+ENV CHROMEDRIVER_VERSION=133.0.6943.53
+
+# Install ChromeDriver (from official Google Chrome for Testing URL)
+RUN wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip" && \
+    unzip chromedriver-linux64.zip && \
+    mv chromedriver-linux64/chromedriver /usr/local/bin/ && \
+    rm -rf chromedriver-linux64.zip chromedriver-linux64
 
 # Set the working directory
 WORKDIR /app
