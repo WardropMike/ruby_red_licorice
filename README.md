@@ -43,3 +43,13 @@ bundle exec rspec
 # Occasionally ChromeDriver version will need to be updated:
 - The latest versions can be looked up @
 - https://googlechromelabs.github.io/chrome-for-testing/
+
+# Syntax to run rake commands:  
+- rake spec             # Runs all tests
+- rake spec:smoke       # Runs only tests tagged with @smoke
+- rake spec:regression  # Runs only tests tagged with @regression
+
+# Tag Tests and Tasks like this:
+- it "tests login", :smoke do
+-  # test logic here
+- end
