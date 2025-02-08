@@ -15,7 +15,7 @@ gem 'webdrivers', '~> 5.2'
 gem 'httparty', '~> 0.21.0'
 
 # Task Automatiom
-gem 'rake'
+gem 'rake', '13.0.3'
 
 # Environment Variable Management
 gem 'dotenv'
@@ -23,7 +23,6 @@ gem 'dotenv'
 # Utility Gems
 gem 'pry', '>=0'
 gem 'nokogiri', '>=1.3.3'
-gem 'rake', '13.0.3'
 gem 'childprocess', '~>1.0'
 gem 'rubyzip', '~>2.3'
 gem 'websocket', '~>1.2'
