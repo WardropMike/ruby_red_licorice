@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby '3.3'  # Using the latest stable Ruby version
+ruby '3.3.7'  # Using the latest stable Ruby version
 
 # Testing Framework
 gem 'rspec', '3.10.0'
